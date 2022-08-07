@@ -1,14 +1,18 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header, Hero } from "./components";
 import { GlobalStyle } from "./GlobalStyles";
+import Home from "./views/Home";
 
 const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <GlobalStyle />
       <Header />
-      <Hero />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

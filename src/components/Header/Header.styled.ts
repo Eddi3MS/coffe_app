@@ -1,12 +1,25 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+  position: fixed;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
   height: 104px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  padding-inline: 1rem;
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+
+  .header_container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const Location = styled.div`

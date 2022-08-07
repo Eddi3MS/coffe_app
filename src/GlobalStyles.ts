@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
 body {
   min-height: 100vh;
+  padding-top: 104px;
 }
 
 button {
@@ -40,6 +41,11 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
 }
 
 `;
