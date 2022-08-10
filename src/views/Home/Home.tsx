@@ -1,19 +1,22 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useMemo, useState } from "react";
 import { Card, Hero } from "../../components";
+import { useCart } from "../../context";
 import { CoffeeData } from "../../data/coffeeData";
 import * as S from "./Home.styled";
 
 const Home = () => {
   const [search, setSearch] = useState("");
 
-  const filteredData = search
-    ? CoffeeData.filter(
-        (coffee) =>
-          coffee.desc.includes(search) ||
-          coffee.title.includes(search) ||
-          coffee.badges.includes(search)
-      )
-    : CoffeeData;
+  const filteredData = useMemo(() => {
+    return search
+      ? CoffeeData.filter(
+          (coffee) =>
+            coffee.desc.includes(search) ||
+            coffee.title.includes(search) ||
+            coffee.badges.includes(search)
+        )
+      : CoffeeData;
+  }, [search]);
 
   return (
     <>

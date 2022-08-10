@@ -17,7 +17,6 @@ export const CoffeeData = [
     title: "Árabe",
     desc: "Bebida preparada com grãos de café árabe e especiarias",
     price: "9,90",
-
     Image: Arabe,
     badges: ["Especial"],
   },
@@ -26,7 +25,6 @@ export const CoffeeData = [
     title: "Expresso Americano",
     desc: "Expresso diluído, menos intenso que o tradicional",
     price: "9,90",
-
     Image: Americano,
     badges: ["Tradicional"],
   },
@@ -35,7 +33,6 @@ export const CoffeeData = [
     title: "Expresso Gelado",
     desc: "Bebida preparada com café expresso e cubos de gelo",
     price: "9,90",
-
     Image: Gelado,
     badges: ["Tradicional", "Gelado"],
   },

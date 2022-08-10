@@ -79,18 +79,18 @@ export const Actions = styled.div`
     border-radius: 6px;
     background: red;
   }
+`;
 
-  button {
-    width: 38px;
-    height: 38px;
-    background-color: #4b2995;
-    border: 0;
-    border-radius: 6px;
+export const CartButton = styled.button`
+  width: 38px;
+  height: 38px;
+  background-color: #4b2995;
+  border: 0;
+  border-radius: 6px;
 
-    svg {
-      path {
-        fill: #fff;
-      }
+  svg {
+    path {
+      fill: #fff;
     }
   }
 `;

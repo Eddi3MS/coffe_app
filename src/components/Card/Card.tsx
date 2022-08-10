@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as Cart } from "../../assets/Cart.svg";
+import { useCart } from "../../context";
+import QuantityInput from "../QuantityInput";
 import * as S from "./Card.styled";
 
 interface ICardProps {
@@ -14,12 +16,26 @@ interface ICardProps {
 }
 
 const Card = ({ coffee: { Image, ...rest } }: ICardProps) => {
+  const [counter, setCounter] = useState(1);
+  const { handleAddToCart } = useCart();
+
+  const handleAddItemToCart = () => {
+    let product = {
+      id: rest.id,
+      name: rest.title,
+      quantity: counter,
+      price: rest.price,
+    };
+
+    handleAddToCart(product);
+  };
+
   return (
     <S.Card>
       <Image />
       <S.Badges>
         {rest.badges.map((badge) => (
-          <S.Badge>{badge}</S.Badge>
+          <S.Badge key={badge}>{badge}</S.Badge>
         ))}
       </S.Badges>
 
@@ -31,10 +47,10 @@ const Card = ({ coffee: { Image, ...rest } }: ICardProps) => {
           R$
           <span className="font-2">{rest.price}</span>
         </span>
-        <div className="quantity"></div>
-        <button>
+        <QuantityInput counter={counter} setCounter={setCounter} />
+        <S.CartButton onClick={handleAddItemToCart}>
           <Cart />
-        </button>
+        </S.CartButton>
       </S.Actions>
     </S.Card>
   );

@@ -35,6 +35,7 @@ export const Location = styled.div`
 
   span {
     font-size: 14px;
+    font-weight: 500;
     color: #4b2995;
   }
 `;
@@ -45,4 +46,24 @@ export const Cart = styled.button`
   height: 38px;
   width: 38px;
   border-radius: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #c47f17;
+    color: #ffffff;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
