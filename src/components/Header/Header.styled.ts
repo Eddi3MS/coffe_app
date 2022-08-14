@@ -20,6 +20,10 @@ export const Header = styled.header`
     align-items: center;
     justify-content: space-between;
   }
+
+  .logo {
+    cursor: pointer;
+  }
 `;
 
 export const Location = styled.div`

@@ -34,9 +34,8 @@ export const Header = styled.div`
 `;
 
 export const Wrapper = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
   gap: 2rem;
-  flex-wrap: wrap;
+  place-items: center;
 `;

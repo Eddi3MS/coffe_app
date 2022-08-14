@@ -87,10 +87,15 @@ export const CartButton = styled.button`
   background-color: #4b2995;
   border: 0;
   border-radius: 6px;
+  transition: background-color 0.2s ease;
 
   svg {
     path {
       fill: #fff;
     }
+  }
+
+  &:hover {
+    background-color: #8047f8;
   }
 `;

@@ -24,4 +24,11 @@ export const QuantityButton = styled.button`
   border: 0;
   display: flex;
   padding-inline: 0.5rem;
+
+  .minus:hover,
+  .plus:hover {
+    path {
+      fill: #4b2995;
+    }
+  }
 `;

@@ -9,7 +9,8 @@ interface ICardProps {
     id: number;
     title: string;
     desc: string;
-    price: string;
+    price: number;
+    price_show: string;
     Image: React.FC<React.SVGProps<SVGSVGElement>>;
     badges: string[];
   };
@@ -45,7 +46,7 @@ const Card = ({ coffee: { Image, ...rest } }: ICardProps) => {
       <S.Actions>
         <span>
           R$
-          <span className="font-2">{rest.price}</span>
+          <span className="font-2">{rest.price_show}</span>
         </span>
         <QuantityInput counter={counter} setCounter={setCounter} />
         <S.CartButton onClick={handleAddItemToCart}>

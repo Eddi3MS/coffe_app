@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useMemo, useState } from "react";
 import { Card, Hero } from "../../components";
-import { useCart } from "../../context";
 import { CoffeeData } from "../../data/coffeeData";
 import * as S from "./Home.styled";
 

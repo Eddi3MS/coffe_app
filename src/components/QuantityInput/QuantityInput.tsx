@@ -6,28 +6,38 @@ import { ReactComponent as Plus } from "../../assets/plus.svg";
 
 interface IQuantityInputProps {
   counter: number;
-  setCounter: React.Dispatch<React.SetStateAction<number>>;
+  setCounter?: React.Dispatch<React.SetStateAction<number>>;
+  cartActions?: {
+    handleAdd: () => void;
+    handleRemove: () => void;
+  };
 }
 
-const QuantityInput = ({ counter, setCounter }: IQuantityInputProps) => {
+const QuantityInput = ({
+  counter,
+  setCounter,
+  cartActions,
+}: IQuantityInputProps) => {
   const handleAdd = () => {
-    setCounter((current) => current + 1);
+    setCounter?.((current) => current + 1);
+    cartActions?.handleAdd();
   };
 
   const handleRemove = () => {
     if (counter === 1) return;
 
-    setCounter((current) => current - 1);
+    setCounter?.((current) => current - 1);
+    cartActions?.handleRemove();
   };
 
   return (
     <S.Input>
       <S.QuantityButton onClick={handleRemove}>
-        <Minus />
+        <Minus className="minus" />
       </S.QuantityButton>
       <span>{counter}</span>
       <S.QuantityButton onClick={handleAdd}>
-        <Plus />
+        <Plus className="plus" />
       </S.QuantityButton>
     </S.Input>
   );

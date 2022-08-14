@@ -19,11 +19,12 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  min-height: 100vh;
+  min-height: calc(100vh - 104px);
   padding-top: 104px;
 }
 
 button {
+  font-family: inherit;
   cursor: pointer;
 }
 

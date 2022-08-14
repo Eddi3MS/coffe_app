@@ -3,9 +3,5 @@ export function formatToNumber(value: string): number {
 }
 
 export function formatToString(value: number): string {
-  return value.toString().replace(".", ",");
-}
-
-export function calcTotal(price: string, quantity: number): number {
-  return formatToNumber(price) * quantity;
+  return value.toFixed(2).replace(".", ",");
 }
