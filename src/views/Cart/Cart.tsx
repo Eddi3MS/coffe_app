@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import toast from "react-hot-toast";
 import { CookiesHandler } from "../../utils/cookies";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   name: yup.string().required("Campo obrigatório"),
@@ -33,7 +34,8 @@ export interface IDeliveryDetails {
 }
 
 const Cart = () => {
-  const { cart } = useCart();
+  const { cart, updateOrderStatus } = useCart();
+  const navigate = useNavigate();
 
   const {
     control,
@@ -85,9 +87,10 @@ const Cart = () => {
         payment: "",
         save: false,
       });
-
-      CookiesHandler.destroyCookies();
     }
+
+    updateOrderStatus("ORDERED");
+    navigate("/order-status");
   };
 
   return (

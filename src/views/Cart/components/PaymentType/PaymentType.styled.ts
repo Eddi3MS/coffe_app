@@ -8,7 +8,13 @@ export const Payment = styled.div`
   .inputs__wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+
     gap: 0.5rem;
+
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
   }
 
   .payment__error {

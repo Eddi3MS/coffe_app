@@ -14,14 +14,15 @@ export const Radio = styled.div`
   label {
     display: inline-block;
     background-color: #e6e5e5;
-    min-width: 178px;
+    width: 178px;
 
     height: 51px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    gap: 0.6rem;
     border-radius: 6px;
 
     cursor: pointer;

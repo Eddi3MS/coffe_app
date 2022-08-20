@@ -8,7 +8,7 @@ import { ReactComponent as Card } from "../../../../assets/card.svg";
 import { ReactComponent as Debito } from "../../../../assets/deb.svg";
 import { ReactComponent as Money } from "../../../../assets/money.svg";
 
-const paymentTypes = [
+export const paymentTypes = [
   { id: "1", title: "Cartão de Credito", Icon: Card, value: "credito" },
   { id: "2", title: "Cartão de Débito", Icon: Debito, value: "debito" },
   { id: "3", title: "Dinheiro", Icon: Money, value: "dinheiro" },

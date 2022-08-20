@@ -6,6 +6,7 @@ import { GlobalStyle } from "./GlobalStyles";
 import Cart from "./views/Cart";
 import Home from "./views/Home";
 import { Toaster } from "react-hot-toast";
+import Order from "./views/Order";
 
 const App = () => {
   const { orderStatus, cart } = useCart();
@@ -17,8 +18,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         {orderStatus !== "ORDERING" && (
-          <Route path="/order-status" element={<Cart />} />
+          <Route path="/order-status" element={<Order />} />
         )}
+
+        <Route path="*" element={<Home />} />
       </Routes>
       <Toaster />
     </BrowserRouter>

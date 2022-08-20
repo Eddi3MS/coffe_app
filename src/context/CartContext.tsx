@@ -102,6 +102,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
 
   const updateOrderStatus = useCallback((newStatus: OrderType) => {
     setOrderStatus(newStatus);
+    setCart([]);
   }, []);
 
   return (

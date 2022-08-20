@@ -43,7 +43,7 @@ const Header = () => {
           </S.Location>
           <S.Cart aria-label="carrinho" onClick={navigateToCart}>
             <Cart />
-            <span>{cartCount}</span>
+            {cartCount > 0 && <span>{cartCount}</span>}
           </S.Cart>
         </div>
       </div>

@@ -6,7 +6,7 @@ class CookiesHandler {
     setCookie(null, "@coffee", JSON.stringify(address));
   }
 
-  public static getCookies(): any | null {
+  public static getCookies(): IDeliveryDetails | null {
     const { "@coffee": addressObject } = parseCookies();
     const addressParsed = addressObject
       ? (JSON.parse(addressObject) as IDeliveryDetails)
