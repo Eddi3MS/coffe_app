@@ -4,19 +4,55 @@ import { ReactComponent as Image } from "../../assets/ordered.svg";
 import { ReactComponent as Map } from "../../assets/order_map.svg";
 import { ReactComponent as Payment } from "../../assets/order_payment.svg";
 import { ReactComponent as Time } from "../../assets/Time.svg";
-import { CookiesHandler } from "../../utils/cookies";
 import { paymentTypes } from "../Cart/components/PaymentType/PaymentType";
+import { onSnapshot } from "firebase/firestore";
+import { requestRef } from "../../lib/firebase";
+import { useParams } from "react-router-dom";
+
+const status = {
+  request_sent: "Pedido Enviado.",
+  request_viewed: "Pedido Visualizado.",
+  request_accepted: "Pedido em Produção.",
+  request_denied: "Pedido Recusado.",
+  request_left: "Pedido à Caminho.",
+};
+
+interface IData {
+  id: string;
+  data: {
+    complement: string;
+    status: string;
+    number: string;
+    save: boolean;
+    district: string;
+    name: string;
+    street: string;
+    payment: string;
+  };
+}
 
 const Order = () => {
-  const data = useState(() => {
-    return CookiesHandler.getCookies();
-  })[0];
+  const [data, setData] = useState<IData | null>(null);
+
+  const { id } = useParams();
 
   useEffect(() => {
-    if (data && !data.save) {
-      CookiesHandler.destroyCookies();
-    }
+    const unsubscribe = onSnapshot(requestRef, (snapshot) => {
+      setData(
+        snapshot.docs
+          .map((doc) => ({ id: doc.id, data: doc.data() }))
+          .find((req) => req.id === id) as IData
+      );
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
+
+  if (data === null) {
+    return <p>Carregando...</p>;
+  }
 
   return (
     <S.Order>
@@ -24,18 +60,22 @@ const Order = () => {
         <h1 className="font-2">Uhu! Pedido confirmado</h1>
         <p>Agora é só aguardar que logo o café chegará até você</p>
 
+        <h2 className={`font-2 ${data.data.status}`}>
+          Status:
+          <span>{status[data.data.status as keyof typeof status]}</span>
+        </h2>
         <S.Wrapper>
           <div className="delivery__wrapper">
             <div className="delivery__info">
               <Map />
               <div>
                 <p>
-                  Entrega em{" "}
+                  Entrega em
                   <span>
-                    {data?.street}, {data?.number}
+                    {data.data.street}, {data.data.number}
                   </span>
                 </p>
-                <p>{data?.district} - Samonte, MG</p>
+                <p>{data.data.district} - Samonte, MG</p>
               </div>
             </div>
             <div className="delivery__info">
@@ -51,8 +91,9 @@ const Order = () => {
                 <p>Pagamento na Entrega</p>
                 <span>
                   {
-                    paymentTypes.find((type) => type.value === data?.payment)
-                      ?.title
+                    paymentTypes.find(
+                      (type) => type.value === data.data.payment
+                    )?.title
                   }
                 </span>
               </div>

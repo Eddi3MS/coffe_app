@@ -25,15 +25,13 @@ type CartContextData = {
   cart: CartItem[];
   handleAddToCart: (product: CartItem) => void;
   handleRemoveFromCart: (productId: number, removeAll?: boolean) => void;
-  orderStatus: OrderType;
-  updateOrderStatus: (newStatus: OrderType) => void;
+  handleClearCart: () => void;
 };
 
 const CartContext = createContext({} as CartContextData);
 
 export const CartContextProvider = ({ children }: CartContextProps) => {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [orderStatus, setOrderStatus] = useState<OrderType>("ORDERING");
 
   const handleAddToCart = useCallback(
     (product: CartItem) => {
@@ -100,19 +98,17 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
     [cart]
   );
 
-  const updateOrderStatus = useCallback((newStatus: OrderType) => {
-    setOrderStatus(newStatus);
+  const handleClearCart = useCallback(() => {
     setCart([]);
   }, []);
 
   return (
     <CartContext.Provider
       value={{
-        orderStatus,
-        updateOrderStatus,
         cart,
         handleAddToCart,
         handleRemoveFromCart,
+        handleClearCart,
       }}
     >
       {children}

@@ -9,6 +9,8 @@ import * as yup from "yup";
 import toast from "react-hot-toast";
 import { CookiesHandler } from "../../utils/cookies";
 import { useNavigate } from "react-router-dom";
+import { addDoc } from "firebase/firestore";
+import { requestRef } from "../../lib/firebase";
 
 const schema = yup.object({
   name: yup.string().required("Campo obrigatório"),
@@ -34,7 +36,7 @@ export interface IDeliveryDetails {
 }
 
 const Cart = () => {
-  const { cart, updateOrderStatus } = useCart();
+  const { cart, handleClearCart } = useCart();
   const navigate = useNavigate();
 
   const {
@@ -70,7 +72,6 @@ const Cart = () => {
   }, []);
 
   const handleDeliveryForm = (data: IDeliveryDetails) => {
-    console.log(data);
     CookiesHandler.setCookies(data);
 
     if (cart.length === 0) {
@@ -87,10 +88,18 @@ const Cart = () => {
         payment: "",
         save: false,
       });
+
+      CookiesHandler.destroyCookies();
     }
 
-    updateOrderStatus("ORDERED");
-    navigate("/order-status");
+    const dataWithStatus = { ...data, status: "request_sent" };
+
+    addDoc(requestRef, dataWithStatus)
+      .then((response) => {
+        handleClearCart();
+        navigate(`/order-status/${response.id}`);
+      })
+      .catch((error) => console.log(error.message));
   };
 
   return (

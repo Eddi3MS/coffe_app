@@ -21,6 +21,31 @@ export const Order = styled.div`
       color: #c47f17;
     }
 
+    h2 {
+      margin-top: 2rem;
+      color: #403937;
+
+      span {
+        padding-left: 1rem;
+      }
+
+      &.request_sent span {
+        color: #8047f8;
+      }
+      &.request_viewed span {
+        color: #dbac2c;
+      }
+      &.request_accepted span {
+        color: #8b9d36;
+      }
+      &.request_denied span {
+        color: #e90707;
+      }
+      &.request_left span {
+        color: #4b2995;
+      }
+    }
+
     & > p {
       font-size: 1.25rem;
       color: #403937;
