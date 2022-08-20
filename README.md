@@ -24,6 +24,9 @@ Construí o sistema utilizando:
 
 - para integrar a loja ao seu firebase, dentro da pasta src crie uma pasta chamada libs e dentro dela crie um arquivo chamado firebase.ts.
 
-- Dentro do arquivo firebase.ts, você deve colar suas chaves do firebase (ao criar um projeto no firebase, você recebe esse codigo) e usar..
+- Dentro do arquivo firebase.ts, você deve colar suas chaves do firebase como na imagem abaixo e usar..
+
+![image](https://user-images.githubusercontent.com/75024157/185769403-eb5d570a-473b-4ec4-a945-97e17011e022.png)
+
 
 ![image](https://user-images.githubusercontent.com/75024157/185762604-2011e568-486b-4007-8fc5-a829f49b9be8.png)
