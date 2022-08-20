@@ -45,7 +45,7 @@ ul {
 }
 
 .container {
-  max-width: 1120px;
+  max-width: 1140px;
   margin-inline: auto;
 }
 

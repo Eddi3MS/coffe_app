@@ -32,11 +32,11 @@ const QuantityInput = ({
 
   return (
     <S.Input>
-      <S.QuantityButton onClick={handleRemove}>
+      <S.QuantityButton onClick={handleRemove} type="button">
         <Minus className="minus" />
       </S.QuantityButton>
       <span>{counter}</span>
-      <S.QuantityButton onClick={handleAdd}>
+      <S.QuantityButton onClick={handleAdd} type="button">
         <Plus className="plus" />
       </S.QuantityButton>
     </S.Input>

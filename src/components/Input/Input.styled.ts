@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  position: relative;
+  margin-bottom: 1rem;
+
   input {
     border: 1px solid #e6e5e5;
     height: 42px;
@@ -17,5 +20,14 @@ export const Wrapper = styled.div`
       border: 1px solid #c47f17;
       outline: none;
     }
+  }
+
+  .input__error {
+    position: absolute;
+    bottom: -23px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding-block: 0.2rem;
+    color: #e90707;
   }
 `;

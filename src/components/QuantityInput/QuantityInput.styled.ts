@@ -31,4 +31,9 @@ export const QuantityButton = styled.button`
       fill: #4b2995;
     }
   }
+
+  &:focus-visible {
+    outline: none !important;
+    background-color: #fff;
+  }
 `;

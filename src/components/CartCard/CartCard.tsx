@@ -59,6 +59,7 @@ const CartCard = ({ product }: ICartCard) => {
             <button
               className=" flex-center remove_btn"
               onClick={removeFromCart}
+              type="button"
             >
               <Trash />
               <span>Remover</span>

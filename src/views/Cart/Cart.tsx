@@ -1,71 +1,127 @@
-import React, { FormEvent } from "react";
-import { CartCard, Input } from "../../components";
+import React, { useEffect } from "react";
 import { useCart } from "../../context";
-import { formatToString } from "../../utils/handleMoney";
 import * as S from "./Cart.styled";
-import { ReactComponent as Delivery } from "../../assets/delivery.svg";
+import { CartInfo, DeliveryData, PaymentType } from "./components";
+
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import toast from "react-hot-toast";
+import { CookiesHandler } from "../../utils/cookies";
+
+const schema = yup.object({
+  name: yup.string().required("Campo obrigatório"),
+  street: yup.string().required("Campo obrigatório"),
+  number: yup
+    .string()
+    .required("Campo obrigatório.")
+    .matches(/^\d+$/, "Apenas números."),
+  district: yup.string().required("Campo obrigatório"),
+  complement: yup.string(),
+  payment: yup.string().required("Campo obrigatório"),
+  save: yup.bool(),
+});
+
+export interface IDeliveryDetails {
+  name: string;
+  street: string;
+  number: string;
+  district: string;
+  complement: string;
+  payment: string;
+  save: boolean;
+}
 
 const Cart = () => {
   const { cart } = useCart();
 
-  const totalCart = cart
-    .map((item) => item.totalPrice!)
-    .reduce((sum, price) => sum + price, 0);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitted },
+    reset,
+    setValue,
+  } = useForm<IDeliveryDetails>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      name: "",
+      street: "",
+      number: "",
+      district: "",
+      complement: "",
+      payment: "",
+      save: false,
+    },
+  });
 
-  const handleDeliveryForm = (e: FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    const data = CookiesHandler.getCookies();
+    if (data) {
+      setValue("name", data.name, { shouldValidate: true });
+      setValue("street", data.street, { shouldValidate: true });
+      setValue("number", data.number, { shouldValidate: true });
+      setValue("district", data.district, { shouldValidate: true });
+      setValue("complement", data.complement);
+      setValue("payment", data.payment, { shouldValidate: true });
+      setValue("save", data.save);
+    }
+  }, []);
+
+  const handleDeliveryForm = (data: IDeliveryDetails) => {
+    console.log(data);
+    CookiesHandler.setCookies(data);
+
+    if (cart.length === 0) {
+      return toast.error("Adicione items ao carrinho.");
+    }
+
+    if (!data.save) {
+      reset({
+        name: "",
+        street: "",
+        number: "",
+        district: "",
+        complement: "",
+        payment: "",
+        save: false,
+      });
+
+      CookiesHandler.destroyCookies();
+    }
   };
 
   return (
     <S.CartWrapper>
-      <form onSubmit={handleDeliveryForm}>
-        <S.Form>
-          <div className="delivery_data">
-            <div className="flex-center">
-              <Delivery />
-              <div>
-                <h1>Endereço de Entrega</h1>
-                <p>Informe o endereço onde deseja receber seu pedido</p>
-              </div>
-            </div>
-            <Input placeholder="Nome" />
-            <Input placeholder="Rua" />
-            <Input placeholder="Num" />
-            <Input placeholder="Complemento" />
-            <Input placeholder="Bairro" />
-          </div>
-          <div className="payment_type"></div>
-        </S.Form>
-        <S.Cart>
-          <h2 className="font-2">Cafés selecionados</h2>
-          <div className="cart_items-wrapper">
-            {cart.length > 0 ? (
-              cart.map((prod) => <CartCard product={prod} key={prod.id} />)
-            ) : (
-              <span className="cart_empty">Não há items no carrinho.</span>
-            )}
+      <form onSubmit={handleSubmit(handleDeliveryForm)}>
+        <S.Delivery>
+          <h1 className="font-2">Complete seu pedido</h1>
 
-            <div className="info_wrapper">
-              <div>
-                <span>Total dos items</span>{" "}
-                <span>R$ {formatToString(totalCart)}</span>
-              </div>
-              <div>
-                <span>Entrega</span> <span>R$ 3,50</span>
-              </div>
-              <div className="info_total">
-                <span>Total</span>{" "}
-                <span>
-                  R$ {totalCart > 0 ? formatToString(totalCart + 3.5) : "0,00"}
-                </span>
-              </div>
+          <DeliveryData hookForms={{ control, errors, isSubmitted }} />
 
-              <button type="submit" className="confirm_btn">
-                confirmar pedido
-              </button>
-            </div>
+          <PaymentType hookForms={{ control, errors, isSubmitted }} />
+
+          <div className="checkbox_wrapper">
+            <Controller
+              name="save"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <input
+                  type="checkbox"
+                  name="save"
+                  id="save"
+                  checked={value}
+                  onChange={(e) => onChange(e.target.checked)}
+                  tabIndex={-1}
+                />
+              )}
+            />
+            <label htmlFor="save" className="font-2">
+              Salvar dados ?
+            </label>
           </div>
-        </S.Cart>
+        </S.Delivery>
+
+        <CartInfo />
       </form>
     </S.CartWrapper>
   );

@@ -3,13 +3,14 @@ import * as S from "./Input.styled";
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   error?: any;
+  isInvalid?: boolean;
 }
 
-const Input = ({ error, ...rest }: IInput) => {
+const Input = ({ error, isInvalid, ...rest }: IInput) => {
   return (
     <S.Wrapper className="input__wrapper">
       <input {...rest} className="input__input" />
-      {error && <p className="input__error">{error}</p>}
+      {isInvalid && <p className="input__error">* {error}.</p>}
     </S.Wrapper>
   );
 };

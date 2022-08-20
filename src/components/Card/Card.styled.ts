@@ -32,8 +32,8 @@ export const Card = styled.div`
 export const Badge = styled.span`
   background-color: #f1e9c9;
   color: #c47f17;
-  width: 81px;
   height: 21px;
+  padding-inline: 0.7rem;
   font-size: 10px;
   border-radius: 1rem;
   font-weight: 700;

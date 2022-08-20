@@ -8,7 +8,7 @@ import Home from "./views/Home";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
-  const { orderStatus } = useCart();
+  const { orderStatus, cart } = useCart();
   return (
     <BrowserRouter>
       <GlobalStyle />

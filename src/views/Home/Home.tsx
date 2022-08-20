@@ -10,9 +10,17 @@ const Home = () => {
     return search
       ? CoffeeData.filter(
           (coffee) =>
-            coffee.desc.includes(search) ||
-            coffee.title.includes(search) ||
-            coffee.badges.includes(search)
+            coffee.desc
+              .toLowerCase()
+              .trim()
+              .includes(search.toLowerCase().trim()) ||
+            coffee.title
+              .toLowerCase()
+              .trim()
+              .includes(search.toLowerCase().trim()) ||
+            coffee.badges.some((badge) =>
+              badge.toLowerCase().trim().includes(search.toLowerCase().trim())
+            )
         )
       : CoffeeData;
   }, [search]);

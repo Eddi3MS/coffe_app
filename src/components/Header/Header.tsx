@@ -5,6 +5,7 @@ import { ReactComponent as Map } from "../../assets/Map.svg";
 import { ReactComponent as Cart } from "../../assets/Cart.svg";
 import { useCart } from "../../context";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const { cart } = useCart();
@@ -13,7 +14,13 @@ const Header = () => {
   let cartCount = cart.length;
 
   const navigateToCart = () => {
-    navigate("/cart");
+    if (cartCount > 0) {
+      navigate("/cart");
+    } else {
+      toast("Adicione items ao carrinho, primeiro!", {
+        icon: "😉",
+      });
+    }
   };
 
   const navigateBackHome = () => {

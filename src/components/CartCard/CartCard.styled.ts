@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const CartCard = styled.div`
   display: flex;
   height: 64px;
-  padding: 0.5rem;
   padding-block: 1.5rem 2rem;
   border-bottom: 1px solid #e6e5e5;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1rem;
 
   &:nth-of-type(1) {
     padding-block: 0 2rem;
@@ -48,6 +48,10 @@ export const Content = styled.div`
       padding-inline: 0.5rem;
 
       background-color: #e6e5e5;
+
+      &:focus-visible {
+        outline: inset #8047f8 1.5px;
+      }
 
       span {
         text-transform: uppercase;

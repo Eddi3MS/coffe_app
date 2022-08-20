@@ -65,6 +65,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       toast.success("Produto adicionado com sucesso.", {
         duration: 3000,
         position: "top-center",
+        icon: "🤤",
       });
     },
     [cart]
@@ -75,6 +76,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       toast.success("Produto removido com sucesso.", {
         duration: 3000,
         position: "top-center",
+        icon: "😕",
       });
       if (removeProduct) {
         let newCart = cart.filter((cart) => cart.id !== productId);
