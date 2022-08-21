@@ -92,7 +92,20 @@ const Cart = () => {
       CookiesHandler.destroyCookies();
     }
 
-    const dataWithStatus = { ...data, status: "request_sent" };
+    const totalCart = cart
+      .map((item) => item.totalPrice!)
+      .reduce((sum, price) => sum + price, 0);
+
+    const dataWithStatus = {
+      ...data,
+      status: "request_sent",
+      cart: {
+        cartItems: cart,
+        totalItems: totalCart,
+        deliveryFee: 3.5,
+        total: totalCart + 3.5,
+      },
+    };
 
     addDoc(requestRef, dataWithStatus)
       .then((response) => {

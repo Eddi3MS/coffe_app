@@ -51,7 +51,11 @@ const Order = () => {
   }, []);
 
   if (data === null) {
-    return <p>Carregando...</p>;
+    return (
+      <p style={{ width: "100%", textAlign: "center", paddingTop: "2rem" }}>
+        Carregando...
+      </p>
+    );
   }
 
   return (
@@ -70,7 +74,7 @@ const Order = () => {
               <Map />
               <div>
                 <p>
-                  Entrega em
+                  Entrega em{" "}
                   <span>
                     {data.data.street}, {data.data.number}
                   </span>
