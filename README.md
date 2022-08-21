@@ -30,3 +30,8 @@ Construí o sistema utilizando:
 
 
 ![image](https://user-images.githubusercontent.com/75024157/185762604-2011e568-486b-4007-8fc5-a829f49b9be8.png)
+
+## Apriveitei a implementação com o firestore, pra criar uma pagina pra gerenciar os pedidos, num modelo Kanban, a medida que o pedido evolui o status, ele avança as colunas.
+
+![image](https://user-images.githubusercontent.com/75024157/185802071-0ef9c804-bdf3-469a-a479-d74b6b88bad4.png)
+
