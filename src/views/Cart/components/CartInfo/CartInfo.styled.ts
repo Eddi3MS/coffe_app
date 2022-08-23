@@ -45,22 +45,5 @@ export const Cart = styled.div`
         color: #403937;
       }
     }
-
-    .confirm_btn {
-      width: 100%;
-      height: 46px;
-      background-color: #dbac2c;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #f6f6f6;
-      letter-spacing: 0.5px;
-      border: 0;
-      border-radius: 6px;
-      transition: background-color 0.2s ease;
-
-      &:hover {
-        background-color: #c47f17;
-      }
-    }
   }
 `;

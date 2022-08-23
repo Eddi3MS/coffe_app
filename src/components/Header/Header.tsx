@@ -4,11 +4,14 @@ import { ReactComponent as Logo } from "../../assets/Logo.svg";
 import { ReactComponent as Map } from "../../assets/Map.svg";
 import { ReactComponent as Cart } from "../../assets/Cart.svg";
 import { useCart } from "../../context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useUser } from "../../context/UserContext";
+import Button from "../Button";
 
 const Header = () => {
   const { cart } = useCart();
+  const { user, logout } = useUser();
   const navigate = useNavigate();
 
   let cartCount = cart.length;
@@ -45,6 +48,12 @@ const Header = () => {
             <Cart />
             {cartCount > 0 && <span>{cartCount}</span>}
           </S.Cart>
+          {user && (
+            <S.User>
+              <Link to="orders-list">Pedidos</Link>
+              <Button onClick={logout} text="Logout" variant="logout" />
+            </S.User>
+          )}
         </div>
       </div>
     </S.Header>

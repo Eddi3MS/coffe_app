@@ -3,11 +3,13 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
   margin-bottom: 1rem;
+  max-width: 100%;
+  display: flex;
 
   input {
+    flex: 1;
     border: 1px solid #e6e5e5;
     height: 42px;
-    width: 100%;
     padding-inline: 0.75rem;
     background-color: #eeeded;
     border-radius: 4px;

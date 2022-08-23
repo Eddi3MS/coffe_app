@@ -71,3 +71,25 @@ export const Cart = styled.button`
     justify-content: center;
   }
 `;
+
+export const User = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-left: 1rem;
+
+  a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px solid #4b2995;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+
+    &:active {
+      color: #4b2995;
+      background-color: #ebe5f9;
+    }
+  }
+`;

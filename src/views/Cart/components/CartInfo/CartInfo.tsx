@@ -1,5 +1,5 @@
 import React from "react";
-import { CartCard } from "../../../../components";
+import { CartCard, Button } from "../../../../components";
 import { useCart } from "../../../../context";
 import { formatToString } from "../../../../utils/handleMoney";
 import * as S from "./CartInfo.styled";
@@ -36,9 +36,7 @@ const CartInfo = () => {
             </span>
           </div>
 
-          <button type="submit" className="confirm_btn">
-            confirmar pedido
-          </button>
+          <Button text="confirmar pedido" type="submit" />
         </div>
       </div>
     </S.Cart>

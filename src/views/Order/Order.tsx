@@ -7,17 +7,17 @@ import { ReactComponent as Time } from "../../assets/Time.svg";
 import { paymentTypes } from "../Cart/components/PaymentType/PaymentType";
 import { onSnapshot } from "firebase/firestore";
 import { requestRef } from "../../lib/firebase";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const status = {
   request_sent: "Pedido Enviado.",
-  request_viewed: "Pedido Visualizado.",
   request_accepted: "Pedido em Produção.",
   request_denied: "Pedido Recusado.",
   request_left: "Pedido à Caminho.",
+  request_delivered: "Pedido entregue.",
 };
 
-interface IData {
+export interface IData {
   id: string;
   data: {
     complement: string;
@@ -33,16 +33,21 @@ interface IData {
 
 const Order = () => {
   const [data, setData] = useState<IData | null>(null);
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(requestRef, (snapshot) => {
-      setData(
-        snapshot.docs
-          .map((doc) => ({ id: doc.id, data: doc.data() }))
-          .find((req) => req.id === id) as IData
-      );
+      let data = snapshot.docs
+        .map((doc) => ({ id: doc.id, data: doc.data() }))
+        .find((req) => req.id === id);
+
+      if (data && data.id === id) {
+        setData(data as IData);
+      } else {
+        navigate("/");
+      }
     });
 
     return () => {

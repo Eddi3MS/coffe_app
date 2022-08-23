@@ -32,9 +32,6 @@ export const Order = styled.div`
       &.request_sent span {
         color: #8047f8;
       }
-      &.request_viewed span {
-        color: #dbac2c;
-      }
       &.request_accepted span {
         color: #8b9d36;
       }
@@ -42,7 +39,7 @@ export const Order = styled.div`
         color: #e90707;
       }
       &.request_left span {
-        color: #4b2995;
+        color: #dbac2c;
       }
     }
 
