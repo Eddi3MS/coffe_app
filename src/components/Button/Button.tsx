@@ -3,7 +3,7 @@ import * as S from "./Button.styled";
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  variant: string;
+  variant?: string;
 }
 
 const Button = ({ text, variant, ...rest }: IButtonProps) => {

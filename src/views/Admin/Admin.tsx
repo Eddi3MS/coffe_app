@@ -35,6 +35,7 @@ const Admin = () => {
   return (
     <div>
       <S.Form onSubmit={handleSubmit(login)}>
+        <h1 className="font-2">Login</h1>
         <Controller
           name="email"
           control={control}

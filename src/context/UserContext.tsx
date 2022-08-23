@@ -9,6 +9,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { auth } from "../lib/firebase";
@@ -47,9 +48,9 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
     }
   }, []);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  useEffect(() => {
+    auth.onAuthStateChanged(setUser);
+  }, []);
 
   const logout = useCallback(async () => {
     setUser(null);
