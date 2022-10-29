@@ -22,6 +22,8 @@ Construí o sistema utilizando:
   
 ```
 
+
+
 - para integrar a loja ao seu firebase, dentro da pasta src crie uma pasta chamada libs e dentro dela crie um arquivo chamado firebase.ts.
 
 - Dentro do arquivo firebase.ts, você deve colar suas chaves do firebase como na imagem abaixo e usar..
@@ -33,7 +35,7 @@ Construí o sistema utilizando:
 
 ## Aproveitei a implementação com o firestore, e criei uma pagina para gerenciar os pedidos, num modelo Kanban: a medida que o pedido evolui o status, ele avança as colunas.
 
-![image](https://user-images.githubusercontent.com/75024157/185802071-0ef9c804-bdf3-469a-a479-d74b6b88bad4.png)
+![image](https://user-images.githubusercontent.com/75024157/198832568-31b62e22-94ec-4f77-bb0b-e1bfe38fae0b.png)
 
 ## ADmin Login e proteção de rotas adicionado
 
