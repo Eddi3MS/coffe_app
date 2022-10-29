@@ -1,8 +1,10 @@
 import styled from "styled-components";
 export const Column = styled.div`
   display: flex;
-  align-items: center;
+  gap: 1rem;
   flex-direction: column;
+
+  
   h2 {
     font-size: 1.5rem;
     font-weight: 800;
@@ -10,29 +12,73 @@ export const Column = styled.div`
     text-align: center;
   }
 
-  &.request_sent h2 {
+  &.request_sent {
+    h2 {
     color: #8047f8;
   }
-  &.request_accepted h2 {
+  & > div {
+    background-image: 
+    linear-gradient(#fff,#fff), 
+    radial-gradient(circle at top left, #dbac2c , #8047f8 );
+  }
+}
+  &.request_accepted {
+    h2 {
     color: #8b9d36;
   }
-  &.request_denied h2 {
+  & > div {
+    background-image: 
+    linear-gradient(#fff,#fff), 
+    radial-gradient(circle at top left, #dbac2c ,#8b9d36 );
+  }
+}
+  &.request_denied {
+    h2 {
     color: #e90707;
   }
-  &.request_left h2 {
+  & > div {
+    background-image: 
+    linear-gradient(#fff,#fff), 
+    radial-gradient(circle at top left, #dbac2c , #e90707 );
+  }
+}
+  &.request_left {
+    h2 {
     color: #dbac2c;
+  }
+  & > div {
+    background-image: 
+    linear-gradient(#fff,#fff), 
+    radial-gradient(circle at top left, #dbac2c , #8047f8 );
+  }
+  }
+
+  &.request_delivered {
+    h2 {
+    color:#293ad6;
+    }
+    & > div {
+    background-image: 
+    linear-gradient(#fff,#fff), 
+    radial-gradient(circle at top left, #dbac2c , #293ad6 );
+  }
   }
 `;
 
 export const Single = styled.div`
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-  max-width: 350px;
+  max-width: 90%;
   border-radius: 6px 44px;
-  padding: 1rem;
-  margin-block: 1rem;
+  padding: 2.5rem;
   background-color: #f3f2f2;
-
   color: #403937;
+  min-height: 330px;
+
+ 
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  padding: 2.5rem;
+  border: double 3px transparent;
+  border-radius: 6px 44px;
 
   h3 {
     font-size: 1rem;

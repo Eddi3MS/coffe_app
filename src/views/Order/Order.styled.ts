@@ -58,32 +58,31 @@ export const Order = styled.div`
 
 export const Wrapper = styled.div`
   margin-top: 2.5rem;
-  background-image: linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%);
-  padding: 2px;
-
+  background-image: 
+    linear-gradient(#fff,#fff), 
+    radial-gradient(circle at top left, #dbac2c , #8047f8 );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  padding: 2.5rem;
+  border: double 3px transparent;
   border-radius: 6px 44px;
-  display: grid;
-
-  .delivery__wrapper {
-    grid-area: 1/1;
-    border-radius: 6px 44px;
-    background: #fff;
-    padding: 2.5rem;
 
     .delivery__info {
-      margin-bottom: 1rem;
       display: flex;
       align-items: center;
       color: #574f4d;
       font-size: 1rem;
-
+      
       svg {
         margin-right: 1rem;
       }
-
+      
       span {
         font-weight: 700;
       }
-    }
-  }
+      
+      &:not(:last-child) {     
+        margin-bottom: 1rem;
+      }
+    }  
 `;

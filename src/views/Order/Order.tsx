@@ -1,72 +1,72 @@
-import React, { useEffect, useState } from "react";
-import * as S from "./Order.styled";
-import { ReactComponent as Image } from "../../assets/ordered.svg";
-import { ReactComponent as Map } from "../../assets/order_map.svg";
-import { ReactComponent as Payment } from "../../assets/order_payment.svg";
-import { ReactComponent as Time } from "../../assets/Time.svg";
-import { paymentTypes } from "../Cart/components/PaymentType/PaymentType";
-import { onSnapshot } from "firebase/firestore";
-import { requestRef } from "../../lib/firebase";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import * as S from './Order.styled'
+import { ReactComponent as Image } from '../../assets/ordered.svg'
+import { ReactComponent as Map } from '../../assets/order_map.svg'
+import { ReactComponent as Payment } from '../../assets/order_payment.svg'
+import { ReactComponent as Time } from '../../assets/Time.svg'
+import { paymentTypes } from '../Cart/components/PaymentType/PaymentType'
+import { onSnapshot } from 'firebase/firestore'
+import { requestRef } from '../../lib/firebase'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const status = {
-  request_sent: "Pedido Enviado.",
-  request_accepted: "Pedido em Produção.",
-  request_denied: "Pedido Recusado.",
-  request_left: "Pedido à Caminho.",
-  request_delivered: "Pedido entregue.",
-};
+  request_sent: 'Pedido Enviado.',
+  request_accepted: 'Pedido em Produção.',
+  request_denied: 'Pedido Recusado.',
+  request_left: 'Pedido à Caminho.',
+  request_delivered: 'Pedido entregue.',
+}
 
 export interface IData {
-  id: string;
+  id: string
   data: {
-    complement: string;
-    status: string;
-    number: string;
-    save: boolean;
-    district: string;
-    name: string;
-    street: string;
-    payment: string;
-  };
+    complement: string
+    status: string
+    number: string
+    save: boolean
+    district: string
+    name: string
+    street: string
+    payment: string
+  }
 }
 
 const Order = () => {
-  const [data, setData] = useState<IData | null>(null);
-  const navigate = useNavigate();
+  const [data, setData] = useState<IData | null>(null)
+  const navigate = useNavigate()
 
-  const { id } = useParams();
+  const { id } = useParams()
 
   useEffect(() => {
     const unsubscribe = onSnapshot(requestRef, (snapshot) => {
       let data = snapshot.docs
         .map((doc) => ({ id: doc.id, data: doc.data() }))
-        .find((req) => req.id === id);
+        .find((req) => req.id === id)
 
       if (data && data.id === id) {
-        setData(data as IData);
+        setData(data as IData)
       } else {
-        navigate("/");
+        navigate('/')
       }
-    });
+    })
 
     return () => {
-      unsubscribe();
-    };
-  }, []);
+      unsubscribe()
+    }
+  }, [])
 
   if (data === null) {
     return (
-      <p style={{ width: "100%", textAlign: "center", paddingTop: "2rem" }}>
+      <p style={{ width: '100%', textAlign: 'center', paddingTop: '2rem' }}>
         Carregando...
       </p>
-    );
+    )
   }
 
   return (
     <S.Order>
-      <div className="info__wrapper">
-        <h1 className="font-2">Uhu! Pedido confirmado</h1>
+      <div className='info__wrapper'>
+        <h1 className='font-2'>Uhu! Pedido confirmado</h1>
         <p>Agora é só aguardar que logo o café chegará até você</p>
 
         <h2 className={`font-2 ${data.data.status}`}>
@@ -74,47 +74,44 @@ const Order = () => {
           <span>{status[data.data.status as keyof typeof status]}</span>
         </h2>
         <S.Wrapper>
-          <div className="delivery__wrapper">
-            <div className="delivery__info">
-              <Map />
-              <div>
-                <p>
-                  Entrega em{" "}
-                  <span>
-                    {data.data.street}, {data.data.number}
-                  </span>
-                </p>
-                <p>{data.data.district} - Samonte, MG</p>
-              </div>
-            </div>
-            <div className="delivery__info">
-              <Time />
-              <div>
-                <p>Previsão de Entrega</p>
-                <span>20min - 30min</span>
-              </div>
-            </div>
-            <div className="delivery__info">
-              <Payment />
-              <div>
-                <p>Pagamento na Entrega</p>
+          <div className='delivery__info'>
+            <Map />
+            <div>
+              <p>
+                Entrega em{' '}
                 <span>
-                  {
-                    paymentTypes.find(
-                      (type) => type.value === data.data.payment
-                    )?.title
-                  }
+                  {data.data.street}, {data.data.number}
                 </span>
-              </div>
+              </p>
+              <p>{data.data.district} - Samonte, MG</p>
+            </div>
+          </div>
+          <div className='delivery__info'>
+            <Time />
+            <div>
+              <p>Previsão de Entrega</p>
+              <span>20min - 30min</span>
+            </div>
+          </div>
+          <div className='delivery__info'>
+            <Payment />
+            <div>
+              <p>Pagamento na Entrega</p>
+              <span>
+                {
+                  paymentTypes.find((type) => type.value === data.data.payment)
+                    ?.title
+                }
+              </span>
             </div>
           </div>
         </S.Wrapper>
       </div>
-      <div className="image__wrapper">
+      <div className='image__wrapper'>
         <Image />
       </div>
     </S.Order>
-  );
-};
+  )
+}
 
-export default Order;
+export default Order

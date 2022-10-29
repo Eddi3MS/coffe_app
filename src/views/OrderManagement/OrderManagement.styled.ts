@@ -4,6 +4,6 @@ export const Kanbam = styled.div`
   margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  gap: 2.5rem;
   padding: 2.5rem;
 `;
