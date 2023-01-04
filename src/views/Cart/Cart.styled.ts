@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import { User } from "firebase/auth";
+import styled, { css } from "styled-components";
 
-export const CartWrapper = styled.div`
+export const CartWrapper = styled.div<{ hasUser: boolean }>`
+
   max-width: 1120px;
   margin-inline: auto;
   padding-inline: 1rem;
@@ -9,6 +11,11 @@ export const CartWrapper = styled.div`
   form {
     display: flex;
     gap: 1rem;
+
+    ${({ hasUser }) => css`
+      margin-top: ${hasUser ? '3rem' : 'initial'};`
+  }
+ 
 
     @media (max-width: 1080px) {
       flex-direction: column;

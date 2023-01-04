@@ -44,6 +44,10 @@ ul {
   justify-content: center;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .container {
   max-width: 1140px;
   margin-inline: auto;

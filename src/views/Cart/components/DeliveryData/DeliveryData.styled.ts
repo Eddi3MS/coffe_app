@@ -13,6 +13,7 @@ export const FormWrapper = styled.div`
   gap: 1rem;
   .input__wrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     width: 100%;
   }
